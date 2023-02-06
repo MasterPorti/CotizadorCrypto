@@ -43,6 +43,7 @@ const Imagenes = styled.img`
 
 function App () {
   const [monedas, setMonedas] = useState([])
+  const [cargando, setCargando] = useState(false)
   return (
     <>
       <Contenedor>
@@ -56,7 +57,8 @@ function App () {
             <Formulario setMonedas={setMonedas} />
           </div>
         </ContenedorFormulario>
-        {monedas.length !== 0 && <InfoCrypto monedas={monedas} />}
+        {cargando && <p>Cargando...</p>}
+        {monedas.length !== 0 && <InfoCrypto monedas={monedas} setCargando={setCargando} />}
       </Contenedor>
 
     </>

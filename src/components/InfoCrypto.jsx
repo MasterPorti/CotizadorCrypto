@@ -20,15 +20,17 @@ font-size:1.2rem;
 font-weight:700;
 `
 
-function InfoCrypto ({ monedas }) {
+function InfoCrypto ({ monedas, setCargando }) {
   const [resultado, setResultado] = useState({})
   useEffect(() => {
     if (monedas.length !== 0) {
+      setCargando(true)
       const consultarApi = async () => {
         const URL = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${monedas[0]}&tsyms=${monedas[1]}`
         const response = await fetch(URL)
         const data = await response.json()
         setResultado(data.DISPLAY[monedas[0]][monedas[1]])
+        setCargando(false)
       }
       consultarApi()
     }
